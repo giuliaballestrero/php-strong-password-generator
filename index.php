@@ -1,3 +1,14 @@
+<?php 
+    include __DIR__ . '/functions.php'; 
+
+    session_start();
+    
+    if(isset($_GET['passwordL'])) {
+        $_SESSION['password'] = getRandomPassword($_GET['passwordL']);
+        header('Location: ./password.php');
+        }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +21,12 @@
 </head>
 
 <?php 
-/*
-
-Milestone 3 (BONUS)
-Invece di visualizzare la password nella index, effettuare un redirect ad una pagina dedicata che tramite $_SESSION recupererà la password da mostrare all’utente.
-Milestone 4 (BONUS)
-Gestire ulteriori parametri per la password: quali caratteri usare fra numeri, lettere e simboli.
-Possono essere scelti singolarmente (es. solo numeri) oppure possono essere combinati fra loro (es. numeri e simboli, oppure tutti e tre insieme).
-Dare all’utente anche la possibilità di permettere o meno la ripetizione di caratteri uguali.
-*/
-
+    /*
+    Milestone 4 (BONUS)
+    Gestire ulteriori parametri per la password: quali caratteri usare fra numeri, lettere e simboli.
+    Possono essere scelti singolarmente (es. solo numeri) oppure possono essere combinati fra loro (es. numeri e simboli, oppure tutti e tre insieme).
+    Dare all’utente anche la possibilità di permettere o meno la ripetizione di caratteri uguali.
+    */
 ?>
 
 <body>
@@ -40,29 +47,10 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
                 <button type="submit" class="btn btn-primary">Invia</button>
             </form>
         </section> 
+
     </header>
 
-    <main>
-        
-        <?php 
-        //includo il percorso relativo usando la costante magggica
-            include __DIR__ . '/functions.php'; 
-        ?>
-
-        <section class="container py-5">
-            <h2 class="bg-dark text-light py-2">Risultato:</h2>
-            <?php 
-                echo "<p class='py-4 fw-bold fs-4'> La password generata è: ";
-                echo getRandomPassword($passwordLength);
-                echo "</p>";
-            ?>
-        </section>
-    </main>
-
     <footer>
-
-    </footer>
-
 
     <!--Importing Bootsrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

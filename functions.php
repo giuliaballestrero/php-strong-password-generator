@@ -3,9 +3,6 @@
 Verificato il corretto funzionamento del nostro codice, spostiamo la logica in un file functions.php che includeremo poi nella pagina principale
 */
 
-    //definisco la varaibile lunghezza pw
-    $passwordLength = $_GET['passwordL'];
-
     function getRandomPassword($passwordLength) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$?%^&*_-+=@';
         $randomString = '';
