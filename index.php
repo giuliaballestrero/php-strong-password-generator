@@ -11,8 +11,7 @@
 
 <?php 
 /*
-Milestone 2
-Verificato il corretto funzionamento del nostro codice, spostiamo la logica in un file functions.php che includeremo poi nella pagina principale
+
 Milestone 3 (BONUS)
 Invece di visualizzare la password nella index, effettuare un redirect ad una pagina dedicata che tramite $_SESSION recupererà la password da mostrare all’utente.
 Milestone 4 (BONUS)
@@ -31,37 +30,33 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
         Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all’utente.
         Scriviamo tutto (logica e layout) in un unico file index.php-->
 
-        <section class="container">
+        <section class="container pt-5 ">
+            <h1 class="bg-dark text-light py-2">
+                Generatore di Password (abbastanza) sicure!
+            </h1>
             <form class="py-3" action="./index.php" method="GET">
-                <label for="password" class="form-label">Lunghezza password:</label>
+                <label for="password" class="form-label">Scegli la lunghezza della password da generare:</label>
                 <input class="m-3" type="number" class="form-control" name="passwordL">
                 <button type="submit" class="btn btn-primary">Invia</button>
             </form>
         </section> 
-
-        <?php 
-            $passwordLength = $_GET['passwordL'];
-            //var_dump($passwordLength);
-            
-            function getRandomPassword($passwordLength) {
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$?%^&*_-+=@';
-                $randomString = '';
-
-                for ($i = 0; $i < $passwordLength; $i++) {
-                    $index = rand(0, strlen($characters) - 1);
-                    $randomString .= $characters[$index];
-                }
-
-                return $randomString;
-            }
-
-            echo getRandomPassword($passwordLength);
-        ?>
-
     </header>
 
     <main>
         
+        <?php 
+        //includo il percorso relativo usando la costante magggica
+            include __DIR__ . '/functions.php'; 
+        ?>
+
+        <section class="container py-5">
+            <h2 class="bg-dark text-light py-2">Risultato:</h2>
+            <?php 
+                echo "<p class='py-4 fw-bold fs-4'> La password generata è: ";
+                echo getRandomPassword($passwordLength);
+                echo "</p>";
+            ?>
+        </section>
     </main>
 
     <footer>
