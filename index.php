@@ -34,14 +34,14 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
         <section class="container">
             <form class="py-3" action="./index.php" method="GET">
                 <label for="password" class="form-label">Lunghezza password:</label>
-                <input class="m-3" type="password" class="form-control" name="passwordL">
+                <input class="m-3" type="number" class="form-control" name="passwordL">
                 <button type="submit" class="btn btn-primary">Invia</button>
             </form>
         </section> 
 
         <?php 
             $passwordLength = $_GET['passwordL'];
-            var_dump($passwordLength);
+            //var_dump($passwordLength);
             
             function getRandomPassword($passwordLength) {
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$?%^&*_-+=@';
