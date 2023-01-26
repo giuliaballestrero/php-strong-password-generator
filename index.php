@@ -11,12 +11,6 @@
 
 <?php 
 /*
-Descrizione
-Dobbiamo creare una pagina che permetta ai nostri utenti di utilizzare il nostro generatore di password (abbastanza) sicure. L’esercizio è suddiviso in varie milestone ed è molto importante svilupparle in modo ordinato.
-Milestone 1
-Creare un form che invii in GET la lunghezza della password.
-Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all’utente.
-Scriviamo tutto (logica e layout) in un unico file index.php
 Milestone 2
 Verificato il corretto funzionamento del nostro codice, spostiamo la logica in un file functions.php che includeremo poi nella pagina principale
 Milestone 3 (BONUS)
@@ -32,13 +26,38 @@ Dare all’utente anche la possibilità di permettere o meno la ripetizione di c
 <body>
 
     <header>
+        <!--Milestone 1
+        Creare un form che invii in GET la lunghezza della password.
+        Una nostra funzione utilizzerà questo dato per generare una password casuale (composta da lettere, lettere maiuscole, numeri e simboli) da restituire all’utente.
+        Scriviamo tutto (logica e layout) in un unico file index.php-->
+
         <section class="container">
             <form class="py-3" action="./index.php" method="GET">
                 <label for="password" class="form-label">Lunghezza password:</label>
-                <input class="m-3" type="password" class="form-control" name="password">
+                <input class="m-3" type="password" class="form-control" name="passwordL">
                 <button type="submit" class="btn btn-primary">Invia</button>
             </form>
         </section> 
+
+        <?php 
+            $passwordLength = $_GET['passwordL'];
+            var_dump($passwordLength);
+            
+            function getRandomPassword($passwordLength) {
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$?%^&*_-+=@';
+                $randomString = '';
+
+                for ($i = 0; $i < $passwordLength; $i++) {
+                    $index = rand(0, strlen($characters) - 1);
+                    $randomString .= $characters[$index];
+                }
+
+                return $randomString;
+            }
+
+            echo getRandomPassword($passwordLength);
+        ?>
+
     </header>
 
     <main>
